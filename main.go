@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"embed"
 	"html/template"
 	"log"
 	"net/http"
@@ -11,6 +12,9 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 )
+
+//go:embed templates static
+var files embed.FS
 
 type App struct {
 	Title       string
@@ -22,7 +26,7 @@ type App struct {
 
 const annotationPrefix = "portfolio.kkato.app/"
 
-var tmpl = template.Must(template.ParseFiles("templates/index.html"))
+var tmpl = template.Must(template.ParseFS(files, "templates/index.html"))
 
 func main() {
 	config, err := rest.InClusterConfig()
@@ -34,7 +38,7 @@ func main() {
 		log.Fatalf("failed to create clientset: %v", err)
 	}
 
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/static/", http.FileServer(http.FS(files)))
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		apps, err := listApps(clientset)
