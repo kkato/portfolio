@@ -7,5 +7,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o portfolio .
 
 FROM gcr.io/distroless/static:nonroot
 COPY --from=builder /app/portfolio /portfolio
+COPY templates/ /templates/
+COPY static/ /static/
 EXPOSE 8080
 ENTRYPOINT ["/portfolio"]

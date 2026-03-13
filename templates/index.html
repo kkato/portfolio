@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kkato portfolio</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>kkato.app</h1>
+    <p>個人プロジェクト一覧</p>
+  </header>
+  <main>
+    <div class="grid">
+      {{range .}}
+      <div class="card">
+        <h2>{{.Title}}</h2>
+        {{if .Description}}<p>{{.Description}}</p>{{end}}
+        {{if .Tech}}
+        <div class="tech">
+          {{range .Tech}}<span>{{.}}</span>{{end}}
+        </div>
+        {{end}}
+        <div class="links">
+          <a class="btn-app" href="{{.URL}}" target="_blank" rel="noopener">アプリを開く</a>
+          {{if .GitHub}}<a class="btn-gh" href="{{.GitHub}}" target="_blank" rel="noopener">GitHub</a>{{end}}
+        </div>
+      </div>
+      {{end}}
+    </div>
+  </main>
+  <footer>Powered by Kubernetes + Cloudflare Tunnel</footer>
+</body>
+</html>
