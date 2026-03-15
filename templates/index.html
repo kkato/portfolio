@@ -7,6 +7,14 @@
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
+<script>
+function copyCmd(btn) {
+  const text = btn.previousElementSibling.querySelector('code').textContent;
+  navigator.clipboard.writeText(text);
+  btn.textContent = '✓';
+  setTimeout(() => { btn.textContent = 'コピー'; }, 1500);
+}
+</script>
   <header>
     <h1>kkato.app</h1>
     <p>個人プロジェクト一覧</p>
@@ -25,7 +33,7 @@
         {{if .Commands}}
         <div class="commands">
           <p class="commands-label">API コマンド例</p>
-          {{range .Commands}}<pre><code>{{.}}</code></pre>{{end}}
+          {{range .Commands}}<div class="command-block"><pre><code>{{.}}</code></pre><button class="copy-btn" onclick="copyCmd(this)">コピー</button></div>{{end}}
         </div>
         {{end}}
         <div class="links">
