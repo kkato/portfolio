@@ -22,8 +22,14 @@
           {{range .Tech}}<span>{{.}}</span>{{end}}
         </div>
         {{end}}
+        {{if .Commands}}
+        <div class="commands">
+          <p class="commands-label">API コマンド例</p>
+          {{range .Commands}}<pre><code>{{.}}</code></pre>{{end}}
+        </div>
+        {{end}}
         <div class="links">
-          <a class="btn-app" href="{{.URL}}" target="_blank" rel="noopener">アプリを開く</a>
+          {{if .Commands}}{{else}}<a class="btn-app" href="{{.URL}}" target="_blank" rel="noopener">アプリを開く</a>{{end}}
           {{if .GitHub}}<a class="btn-gh" href="{{.GitHub}}" target="_blank" rel="noopener">GitHub</a>{{end}}
         </div>
       </div>

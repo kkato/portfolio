@@ -22,6 +22,7 @@ type App struct {
 	URL         string
 	GitHub      string
 	Tech        []string
+	Commands    []string
 }
 
 const annotationPrefix = "portfolio.kkato.app/"
@@ -89,12 +90,22 @@ func listApps(clientset *kubernetes.Clientset) ([]App, error) {
 			}
 		}
 
+		var commands []string
+		if c := ann[annotationPrefix+"commands"]; c != "" {
+			for _, s := range strings.Split(c, "\n") {
+				if s = strings.TrimSpace(s); s != "" {
+					commands = append(commands, s)
+				}
+			}
+		}
+
 		apps = append(apps, App{
 			Title:       title,
 			Description: ann[annotationPrefix+"description"],
 			URL:         url,
 			GitHub:      ann[annotationPrefix+"github"],
 			Tech:        tech,
+			Commands:    commands,
 		})
 	}
 	return apps, nil

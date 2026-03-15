@@ -11,6 +11,10 @@ main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; }
 .card p { margin-top: 0.5rem; font-size: 0.9rem; color: #64748b; line-height: 1.6; }
 .tech { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .tech span { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 999px; padding: 0.2rem 0.7rem; font-size: 0.75rem; color: #1d4ed8; }
+.commands { margin-top: 1rem; }
+.commands-label { font-size: 0.75rem; color: #64748b; margin-bottom: 0.4rem; }
+.commands pre { background: #0f172a; border-radius: 6px; padding: 0.6rem 0.8rem; margin-top: 0.4rem; overflow-x: auto; }
+.commands code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 0.8rem; color: #7dd3fc; white-space: pre; }
 .links { margin-top: 1.2rem; display: flex; gap: 0.75rem; }
 .links a { font-size: 0.85rem; text-decoration: none; padding: 0.4rem 0.9rem; border-radius: 6px; transition: opacity 0.2s; }
 .links a:hover { opacity: 0.8; }
